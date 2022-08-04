@@ -5,7 +5,7 @@ This is an experimental project to create an Open Source social network aka Mark
 ## Structure
 
 ### Component diagram
-![Component diagram of the CrowdProj](imgs/crowdproj-components.drawio-1.png)
+![Component diagram of the CrowdProj](imgs/crowdproj-components.drawio.png)
 
 ### Entities
 ![ER diagram of the CrowdProj](imgs/crowdproj-ER.drawio.png)
