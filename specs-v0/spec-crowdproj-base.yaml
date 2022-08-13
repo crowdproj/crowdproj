@@ -1,0 +1,68 @@
+openapi: 3.0.4
+info:
+  title: CrowdProj
+  description: An experimental project with high modularity
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 0.0.0
+
+paths: {}
+
+components:
+  schemas:
+
+    RequestId:
+      type: string
+      description: Уникальный идентификатор запроса для трассировки его обработки
+
+    UserId:
+      type: string
+      description: Идентификатор пользователя
+
+    CpRequestDebug:
+      type: object
+      properties:
+        debug:
+          $ref: '#/components/schemas/CpBaseDebug'
+
+    CpBaseDebug:
+      type: object
+      properties:
+        mode:
+          $ref: '#/components/schemas/CpRequestDebugMode'
+        stub:
+          $ref: '#/components/schemas/CpRequestDebugStubs'
+
+    CpRequestDebugMode:
+      type: string
+      enum:
+        - prod
+        - test
+        - stub
+
+    CpRequestDebugStubs:
+      type: string
+      description: Перечисления всех стабов
+      enum:
+        - success
+        - notFound
+        - badId
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        group:
+          type: string
+        field:
+          type: string
+        message:
+          type: string
+
+    ResponseResult:
+      type: string
+      enum:
+        - success
+        - error
