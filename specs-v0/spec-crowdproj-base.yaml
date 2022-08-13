@@ -24,7 +24,7 @@ components:
       type: object
       properties:
         debug:
-          $ref: '#/components/schemas/CpDebug'
+          $ref: '#/components/schemas/CpBaseDebug'
 
     CpBaseDebug:
       type: object
