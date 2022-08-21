@@ -2,9 +2,12 @@ openapi: 3.0.4
 info:
   title: CrowdProj
   description: An experimental project with high modularity
+  contact:
+    name: Sergey Okatov
+    email: sokatov@gmail.com
   license:
     name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
   version: 0.0.0
 
 paths: {}
@@ -14,20 +17,22 @@ components:
 
     RequestId:
       type: string
-      description: Уникальный идентификатор запроса для трассировки его обработки
+      description: A unique request identificator for for the request trace purposes
 
     UserId:
       type: string
-      description: Идентификатор пользователя
+      description: A user unique identificator
 
     CpRequestDebug:
       type: object
+      description: Debug property for request description
       properties:
         debug:
           $ref: '#/components/schemas/CpBaseDebug'
 
     CpBaseDebug:
       type: object
+      description: A basic structure describing debug settings
       properties:
         mode:
           $ref: '#/components/schemas/CpRequestDebugMode'
@@ -36,6 +41,7 @@ components:
 
     CpRequestDebugMode:
       type: string
+      description: 'Debug modes: prod - production functioning, test - a test (in-memory) database usage, stub - fixed stubs response'
       enum:
         - prod
         - test
@@ -43,7 +49,7 @@ components:
 
     CpRequestDebugStubs:
       type: string
-      description: Перечисления всех стабов
+      description: List here all stubs available to clients
       enum:
         - success
         - notFound
@@ -51,18 +57,27 @@ components:
 
     Error:
       type: object
+      description: Common description of an error
       properties:
         code:
           type: string
+          description: "Some specific code to identify an error for programming handling purposes"
         group:
           type: string
+          description: "An optional group id to segment different errors"
         field:
           type: string
-        message:
+          description: "An optional field the error relates to"
+        title:
           type: string
+          description: A short explanation of the error to show as a tooltip or hint, for example
+        description:
+          type: string
+          description: A full description of the error with a complete information
 
     ResponseResult:
       type: string
+      description: 'General template for a response structure. Has two options: success and error'
       enum:
         - success
         - error
