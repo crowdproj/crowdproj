@@ -77,7 +77,37 @@ components:
 
     ResponseResult:
       type: string
-      description: 'General template for a response structure. Has two options: success and error'
+      description: 'Response statuses. Has two options: success and error'
       enum:
         - success
         - error
+
+    IRequest:
+      type: object
+      description: Basic interface for all requests
+      properties:
+        requestType:
+          type: string
+          description: Discriminator for all requests
+          example: create
+        requestId:
+          $ref: '#/components/schemas/RequestId'
+      discriminator:
+        propertyName: requestType
+
+    IResponse:
+      type: object
+      description: Basic interface for all responses
+      properties:
+        responseType:
+          type: string
+          description: Discriminator for all responses
+          example: create
+        requestId:
+          $ref: '#/components/schemas/RequestId'
+        result:
+          $ref: '#/components/schemas/ResponseResult'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'

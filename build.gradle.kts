@@ -9,7 +9,7 @@ nexusStaging {
 }
 
 group = "com.crowdproj"
-version = "0.0.2"
+version = "0.0.3"
 
 subprojects {
     this.group = group
