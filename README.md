@@ -9,3 +9,11 @@ This is an experimental project to create an Open Source social network aka Mark
 
 ### Entities
 ![ER diagram of the CrowdProj](imgs/crowdproj-ER.drawio.png)
+
+## Contacts
+
+Telegram groups for discussions: 
+
+Development questions: [crowdproj-dev](https://t.me/crowdproj_dev)
+
+Startup questions: [crowdproj-com](https://t.me/crowdproj_com)
