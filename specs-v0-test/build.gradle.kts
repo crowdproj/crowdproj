@@ -1,6 +1,6 @@
 plugins {
     kotlin("multiplatform")
-    id("org.openapi.generator")
+    id("com.crowdproj.generator")
     kotlin("plugin.serialization")
 }
 
@@ -60,7 +60,7 @@ kotlin {
  */
 openApiGenerate {
     val openapiGroup = "${rootProject.group}.api.v2"
-    generatorName.set("kotlin") // Это и есть активный генератор
+    generatorName.set("kotlin-crowdproj") // Это и есть активный генератор
     packageName.set(openapiGroup)
     apiPackage.set("$openapiGroup.api")
     modelPackage.set("$openapiGroup.models")

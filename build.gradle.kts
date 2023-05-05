@@ -1,5 +1,6 @@
 plugins {
     id("io.codearte.nexus-staging")
+    id("com.crowdproj.generator") apply false
 }
 
 nexusStaging {
@@ -10,6 +11,10 @@ nexusStaging {
 
 group = "com.crowdproj"
 version = "0.1.0"
+
+repositories {
+    mavenCentral()
+}
 
 subprojects {
     this.group = group
