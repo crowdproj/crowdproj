@@ -18,4 +18,5 @@ val runTests: String by settings
 val shouldTest = runTests.toBoolean()
 
 include("specs-v0")
+include("specs-v1")
 if(shouldTest) include("specs-v0-test")
