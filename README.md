@@ -1,41 +1,19 @@
-# CrowdProj project
+# crowdproj-calendar-resources
 
-This is an experimental project to create an Open Source social network aka Marketplace in a highly modular style.
+Микросервис для управления ссылками на доступные ресурсы.
 
-## Roadmap
+## Документация
 
-| Group / Subsystem           | Microservice                                     | Purpose                                                                                                   | Contributors                                   | Completeness | 
-|-----------------------------|--------------------------------------------------|-----------------------------------------------------------------------------------------------------------|------------------------------------------------|--------------|
-| Ads                         | [Ads](https://github.com/crowdproj/crowdproj-ad) | User ads control. Users dispose texd descriptions of their demands or supplies to be met one another      | [@svok](https://github.com/svok)               | 20%          |
-| Product                     | Product Model                                    |                                                                                                           | [@azatgt1996](https://github.com/azatgt1996)   |              |
-|                             | Product Group                                    |                                                                                                           | [@phaeton03](https://github.com/phaeton03)     | 75%          |
-|                             | Product Property                                 |                                                                                                           | [@Riafka](https://github.com/Riafka)           | 70%          |
-|                             | Product Property Value                           |                                                                                                           | [@ann-kiy](https://github.com/ann-kiy)         |              |
-| References                  | Units                                            |                                                                                                           | [@fooglish](https://github.com/fooglish)       | 70%          |
-| Comments                    | Comment                                          |                                                                                                           | [@StellaLupus](https://github.com/StellaLupus) |              |
-| Ratings                     | Ratings                                          |                                                                                                           | [@shvetson](https://github.com/shvetson)       | 75%          |
-|                             | Vote                                             |                                                                                                           |                                                |              |
-| Calendar / Resource planner |                                                  | Calendar allows to plan access to some limited resources like computers, labour, time, etc.               |                                                |              |
-|                             | Calendar Resources                               | Reference for the available resources                                                                     | [@Zuzichev](https://github.com/Zuzichev)       |              |
-|                             | Calendar Events                                  | Demands for the resources                                                                                 |                                                |              |
-| Library                     |                                                  | Library is a subsystem for management of different resources: video, music, documents, custom files, etc. |                                                |              |
-|                             | Documents                                        | Reference of stored documents                                                                             |                                                |              |
-|                             | Stored Resources                                 | Resources attached to the document                                                                        |                                                |              |
-|                             |                                                  |                                                                                                           |                                                |              |
-
-
-## Structure
-
-### Component diagram
-![Component diagram of the CrowdProj](imgs/crowdproj-components.drawio.png)
-
-### Entities
-![ER diagram of the CrowdProj](imgs/crowdproj-ER.drawio.png)
-
-## Contacts
-
-Telegram groups for discussions: 
-
-Development questions: [crowdproj-dev](https://t.me/crowdproj_dev)
-
-Startup questions: [crowdproj-com](https://t.me/crowdproj_com)
+1. Маркетинг
+    1. [Заинтересанты](./docs/01-marketing/01-stakeholders.md)
+    2. [Целевая аудитория](./docs/01-marketing/02-target-audience.md)
+    3. [Конкурентный анализ](./docs/01-marketing/03-concurrency.md)
+    4. [Пользовательские истории](./docs/01-marketing/04-user-stories.md)
+2. DevOps
+    1. [Инфраструктура развертывания](./docs/02-devops/01-infrastruture.md)
+    2. [Инфраструктура мониторинга](./docs/02-devops/02-monitoring.md)
+3. Тесты
+4. Архитектура
+    1. [Компонентная схема](./docs/04-architecture/01-arch.md)
+    2. [Интеграционная схема](./docs/04-architecture/02-integration.md)
+    3. [Описание API](./docs/04-architecture/03-api.md)

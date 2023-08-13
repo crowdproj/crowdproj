@@ -16,9 +16,7 @@ pluginManagement {
         id("io.codearte.nexus-staging") version nexusStagingVersion
     }
 }
-val runTests: String by settings
-val shouldTest = runTests.toBoolean()
+
 
 include("specs-v0")
-if(shouldTest) include("specs-v0-test")
-include("specs-v1")
+
