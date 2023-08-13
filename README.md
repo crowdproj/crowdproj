@@ -21,7 +21,7 @@ This is an experimental project to create an Open Source social network aka Mark
 | Library                     |                                                  | Library is a subsystem for management of different resources: video, music, documents, custom files, etc. |                                                |              |
 |                             | Documents                                        | Reference of stored documents                                                                             |                                                |              |
 |                             | Stored Resources                                 | Resources attached to the document                                                                        |                                                |              |
-|                             |                                                  |                                                                                                           |                                                |              |
+| Tags                        | Tags                                             | Tags management and provisioning to other services                                                        | [@dpopkov](https://github.com/dpopkov)         |              |
 
 
 ## Structure
