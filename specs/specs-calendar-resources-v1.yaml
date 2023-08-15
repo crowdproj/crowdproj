@@ -1,0 +1,327 @@
+openapi: 3.0.4
+info:
+  title: crowdproj-calendar-resources
+  description: Microservice to support the Calendar microservice.
+  contact:
+    name: Sergey Okatov
+    email: sokatov@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/v1
+tags:
+  - name: calendar-resources
+    description: support the Calendar microservice
+
+paths:
+  /calendar/resources/create:
+    post:
+      tags:
+        - calendar-resources
+      summary: Create resources
+      operationId: CalendarResourcesCreate
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalendarResourcesCreateRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalendarResourcesCreateResponse'
+
+  /calendar/resources/read:
+    post:
+      tags:
+        - calendar-resources
+      summary: Read calendar resources
+      operationId: CalendarResourcesRead
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalendarResourcesReadRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalendarResourcesReadResponse'
+
+  /calendar/resources/update:
+    post:
+      tags:
+        - calendar-resources
+      summary: Update calendar resources
+      operationId: CalendarResourcesUpdate
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalendarResourcesUpdateRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalendarResourcesUpdateResponse'
+
+  /calendar/resources/delete:
+    post:
+      tags:
+        - calendar-resources
+      summary: Delete calendar resources
+      operationId: CalendarResourcesDelete
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalendarResourcesDeleteRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalendarResourcesDeleteResponse'
+
+  /calendar/resources/search:
+    post:
+      tags:
+        - calendar-resources
+      summary: Search calendar resources by id
+      operationId: CalendarResourcesSearch
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalendarResourcesSearchRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalendarResourcesSearchResponse'
+
+components:
+  schemas:
+
+    ICalendarResourcesRequest:
+      allOf:
+        - $ref: './base.yaml#/components/schemas/IRequest'
+        - type: object
+          discriminator:
+            propertyName: requestType
+            mapping:
+              create: '#/components/schemas/CalendarResourcesCreateRequest'
+              read: '#/components/schemas/CalendarResourcesReadRequest'
+              update: '#/components/schemas/CalendarResourcesUpdateRequest'
+              delete: '#/components/schemas/CalendarResourcesDeleteRequest'
+              search: '#/components/schemas/CalendarResourcesSearchRequest'
+
+    ICalendarResourcesResponse:
+      allOf:
+        - $ref: './base.yaml#/components/schemas/IResponse'
+        - type: object
+          discriminator:
+            propertyName: responseType
+            mapping:
+              create: '#/components/schemas/CalendarResourcesCreateResponse'
+              read: '#/components/schemas/CalendarResourcesReadResponse'
+              update: '#/components/schemas/CalendarResourcesUpdateResponse'
+              delete: '#/components/schemas/CalendarResourcesDeleteResponse'
+              search: '#/components/schemas/CalendarResourcesSearchResponse'
+              init: '#/components/schemas/CalendarResourcesInitResponse'
+
+    Error:
+      $ref: './base.yaml#/components/schemas/Error'
+
+    RequestId:
+      $ref: './base.yaml#/components/schemas/RequestId'
+
+    UserId:
+      $ref: './base.yaml#/components/schemas/UserId'
+
+    CalendarResourcesLock:
+      type: string
+      description: Версия оптимистичной блокировки
+
+    ResponseResult:
+      $ref: './base.yaml#/components/schemas/ResponseResult'
+
+    RequestDebug:
+      $ref: './base.yaml#/components/schemas/CpRequestDebug'
+
+    CalendarResourcesId:
+      type: string
+      description: Product property ID
+
+    BaseCalendarResources:
+      type: object
+      description: Object describes resources that are the same for create and update
+      properties:
+        productCount:
+          type: integer
+          description: resource amount
+        dateTimeFrom:
+          type: integer
+          description: time start
+        dateTimeTo:
+          type: integer
+          description: time stop
+        ownerId:
+          $ref: '#/components/schemas/UserId'
+
+    CalendarResourcesCreateObject:
+      allOf:
+        - $ref: '#/components/schemas/BaseCalendarResources'
+
+    CalendarResourcesUpdateObject:
+      allOf:
+        - $ref: '#/components/schemas/BaseCalendarResources'
+        - type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/CalendarResourcesId'
+            lock:
+              $ref: '#/components/schemas/CalendarResourcesLock'
+
+    CalendarResourcesCreateRequest:
+      allOf:
+        - $ref: '#/components/schemas/ICalendarResourcesRequest'
+        - $ref: '#/components/schemas/RequestDebug'
+        - type: object
+          properties:
+            calendarResources:
+              $ref: '#/components/schemas/CalendarResourcesCreateObject'
+
+    CalendarResourcesReadRequest:
+      allOf:
+        - $ref: '#/components/schemas/ICalendarResourcesRequest'
+        - $ref: '#/components/schemas/RequestDebug'
+        - type: object
+          properties:
+            calendarResourcesIds:
+              type: array
+              items:
+                $ref: '#/components/schemas/CalendarResourcesId'
+
+    CalendarResourcesUpdateRequest:
+      allOf:
+        - $ref: '#/components/schemas/ICalendarResourcesRequest'
+        - $ref: '#/components/schemas/RequestDebug'
+        - type: object
+          properties:
+            calendarResources:
+              $ref: '#/components/schemas/CalendarResourcesUpdateObject'
+
+    CalendarResourcesDeleteRequest:
+      allOf:
+        - $ref: '#/components/schemas/ICalendarResourcesRequest'
+        - $ref: '#/components/schemas/RequestDebug'
+        - type: object
+          properties:
+            calendarResourcesId:
+              $ref: '#/components/schemas/CalendarResourcesId'
+            lock:
+              $ref: '#/components/schemas/CalendarResourcesLock'
+
+    CalendarResourcesSearchRequest:
+      allOf:
+        - $ref: '#/components/schemas/ICalendarResourcesRequest'
+        - $ref: '#/components/schemas/RequestDebug'
+        - type: object
+          properties:
+            calendarResourcesFilter:
+              $ref: '#/components/schemas/CalendarResourcesSearchFilter'
+
+    CalendarResourcesSearchFilter:
+      type: object
+      description: filters for calendar resources search
+      properties:
+        name:
+          type: string
+          description: Calendar Resources name
+        description:
+          type: string
+          description: Product property description
+
+    CalendarResourcesResponseObject:
+      allOf:
+        - type: object
+          description: Object that is returned in the backend response
+          properties:
+            id:
+              $ref: '#/components/schemas/CalendarResourcesId'
+            deleted:
+              type: boolean
+              description: Calendar resources deletion flag
+              example: false
+            lock:
+              $ref: '#/components/schemas/CalendarResourcesLock'
+        - $ref: '#/components/schemas/BaseCalendarResources'
+
+    CalendarResourcesResponseSingle:
+      allOf:
+        - type: object
+          description: Response with one calendar resources
+          properties:
+            calendarResources:
+              $ref: '#/components/schemas/CalendarResourcesResponseObject'
+
+    CalendarResourcesResponseMulti:
+      allOf:
+        - type: object
+          description: Response with list of calendar resources
+          properties:
+            calendarResources:
+              type: array
+              items:
+                $ref: '#/components/schemas/CalendarResourcesResponseObject'
+
+    CalendarResourcesCreateResponse:
+      allOf:
+        - $ref: '#/components/schemas/ICalendarResourcesResponse'
+        - $ref: '#/components/schemas/CalendarResourcesResponseSingle'
+
+    CalendarResourcesReadResponse:
+      allOf:
+        - $ref: '#/components/schemas/ICalendarResourcesResponse'
+        - $ref: '#/components/schemas/CalendarResourcesResponseMulti'
+
+    CalendarResourcesUpdateResponse:
+      allOf:
+        - $ref: '#/components/schemas/ICalendarResourcesResponse'
+        - $ref: '#/components/schemas/CalendarResourcesResponseSingle'
+
+    CalendarResourcesDeleteResponse:
+      allOf:
+        - $ref: '#/components/schemas/ICalendarResourcesResponse'
+        - $ref: '#/components/schemas/CalendarResourcesResponseSingle'
+
+    CalendarResourcesSearchResponse:
+      allOf:
+        - $ref: '#/components/schemas/ICalendarResourcesResponse'
+        - $ref: '#/components/schemas/CalendarResourcesResponseMulti'
+
+    CalendarResourcesInitResponse:
+      allOf:
+        - $ref: '#/components/schemas/ICalendarResourcesResponse'
