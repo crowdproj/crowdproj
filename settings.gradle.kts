@@ -20,4 +20,4 @@ val runTests: String by settings
 val shouldTest = runTests.toBoolean()
 
 include("specs")
-
+include("calendar-resources-api-v1-jackson")
