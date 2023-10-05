@@ -109,3 +109,5 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Error'
+      discriminator:
+        propertyName: responseType
