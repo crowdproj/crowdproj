@@ -1,7 +1,7 @@
 plugins {
     `maven-publish`
     id("signing")
-    id("org.openapi.generator")
+    id("com.crowdproj.generator")
 }
 
 signing {
@@ -10,39 +10,10 @@ signing {
 
 val apiVersion = project.name.replace("specs-", "")
 
-openApiGenerate {
-    val openapiGroup = "${rootProject.group}.api.$apiVersion"
-    additionalProperties.set(mapOf(
-
-    ))
-    generatorName.set("html") // Это и есть активный генератор
-    templateDir.set("$projectDir/templates")
-    packageName.set(openapiGroup)
-    apiPackage.set("$openapiGroup.api")
-    modelPackage.set("$openapiGroup.models")
-    invokerPackage.set("$openapiGroup.invoker")
+crowdprojGenerate {
+    packageName.set("${rootProject.group}.api.$apiVersion")
     inputSpec.set("$projectDir/spec-crowdproj-base.yaml")
-
-    /**
-     * Настройка дополнительных параметров из документации по генератору
-     * https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/kotlin.md
-     */
-    configOptions.set(
-        mapOf(
-            "appName" to "CrowdProj",
-            "infoUrl" to "https://github.com/crowdproj/crowdproj",
-            "licenseInfo" to "The Apache License, Version 2.0",
-            "licenseUrl" to "http://www.apache.org/licenses/LICENSE-2.0.txt",
-            "artifactId" to project.name,
-            "groupId" to project.group.toString(),
-            "infoEmail" to "sokatov@gmail.com",
-            "artifactVersion" to project.version.toString(),
-            "legacyDiscriminatorBehavior" to "false",
-            "appDescription" to "OpenAPI specification providing basic definitions for all other CrowdProj projects",
-        )
-    )
 }
-
 
 val archives: Configuration by configurations.getting
 val specFile = layout.buildDirectory.file("$projectDir/spec-crowdproj-base.yaml")

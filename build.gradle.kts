@@ -1,6 +1,5 @@
 plugins {
     id("io.codearte.nexus-staging")
-    id("com.crowdproj.generator") apply false
 }
 
 nexusStaging {
@@ -10,7 +9,7 @@ nexusStaging {
 }
 
 group = "com.crowdproj"
-version = "0.1.1"
+version = "0.2.0"
 
 repositories {
     mavenCentral()
